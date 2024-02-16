@@ -56,18 +56,19 @@ INSERT INTO Members (CustomerID, JoinDate) VALUES
 QUESTIONS
 
 --If each $1 spent equates to 10 points and sushi has a 2x points multiplier - how many points would each customer have?
-```SELECT s.CustomerID,
-    ```SUM(CASE
-		```WHEN ProductName = 'Sushi' THEN  Price*2
-		```ELSE Price*1
-		```END) AS Point
-```FROM Sales AS s
-```INNER JOIN Menu AS m
-	  ```ON s.ProductID = m.ProductID
-```GROUP BY s.CustomerID
-
-To solve this question, we need to join table 
-From the query above, it is shown that Customer A has the highest (86) point and Customer C has the lowest point (36)
+```
+SELECT s.CustomerID,
+	SUM(CASE
+	WHEN ProductName = 'Sushi' THEN  Price*2
+	ELSE Price*1
+	END) AS Point
+FROM Sales AS s
+INNER JOIN Menu AS m
+	ON s.ProductID = m.ProductID
+GROUP BY s.CustomerID
+```
+ 
+From the query above, we get that Customer A has the highest point (86) and Customer C has the lowest point (36)
 
 
 --What is the total items and amount spent for each member before they became a member?
