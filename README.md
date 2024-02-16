@@ -3,12 +3,13 @@ this is a mock up data to practice SQL
 
 First, we're going to create a database to store our tables. We're going to name it as 'Restaurant'.
 
-CREATE DATABASE Restaurant
+```CREATE DATABASE Restaurant```
 
 Select our database using this statement (or you can select it right from your available databases on DBMS).
-USE Restaurant
+```USE Restaurant```
 
 The database will consists of 3 tables: Sales, Menu, and Members.
+```
 CREATE TABLE Sales(
 	CustomerID VARCHAR(10),
 	OrderDate DATE,
@@ -25,6 +26,7 @@ CREATE TABLE Members(
 	CustomerID VARCHAR(10),
 	JoinDate Date
 )
+```
 
 After creating the tables, let's input the data into it.
 INSERT INTO Sales VALUES
