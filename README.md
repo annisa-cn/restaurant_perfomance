@@ -118,3 +118,6 @@ SELECT CustomerID, ProductName
 FROM #TempTable
 WHERE Row = 1
 ```
+
+We're creating a temporary table where it'll rank the order of each customer in sequential rank number.
+Sushi, Curry, Ramen are the first order od Customer A, B, and C respectively.
