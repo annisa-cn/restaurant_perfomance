@@ -29,6 +29,7 @@ CREATE TABLE Members(
 ```
 
 After creating the tables, let's input the data into it.
+```
 INSERT INTO Sales VALUES
 ('A', '2021-01-01', '1'), 
 ('A', '2021-01-01', '2'), 
@@ -54,6 +55,7 @@ INSERT INTO Menu (ProductID, ProductName, Price) VALUES
 INSERT INTO Members (CustomerID, JoinDate) VALUES
 ('A', '2021-01-07'), 
 ('B', '2021-01-09')
+```
 
 QUESTIONS
 
@@ -74,6 +76,7 @@ From the query above, we get that Customer A has the highest point (86) and Cust
 
 
 --What is the total items and amount spent for each member before they became a member?
+```
 SELECT s.CustomerID, COUNT(s.ProductID) AS TotalItem, SUM(m.Price) AS TotalSpent
 FROM Sales AS s
 INNER JOIN Menu AS m
@@ -82,30 +85,28 @@ INNER JOIN Members AS ms
 	ON s.CustomerID = ms.CustomerID
 WHERE OrderDate < JoinDate
 GROUP BY s.CustomerID
+```
 
-
+By joining table Sales and Members, we can see that there 3 customers who had purchased.
+However, only member A and B who joined the membership.
+Customer B purchased more item and spent more than customer A.
 
 
 --What is the most purchased item on the menu and how many times was it purchased by all customers?
+```
 SELECT TOP(1) m.ProductName, COUNT(CAST(s.ProductID AS INTEGER)) AS NoPurchase
 FROM Sales AS s
 INNER JOIN Menu AS m
 	ON s.ProductID = m.ProductID
 GROUP BY ProductName
 ORDER BY NoPurchase DESC
+```
 
-SELECT CustomerID, SUM(Price) AS TotalPrice
-FROM Sales AS s
-JOIN Menu AS m
-	ON s.ProductID = m.ProductID
-GROUP BY CustomerID
+Ramen is the most purchased item which ordered for 8 times
 
-SELECT CustomerID, COUNT(DISTINCT OrderDate) AS NoVisited
-FROM Sales
-GROUP BY CustomerID
 
 --What was the first item from the menu purchased by each customer?
-
+```
 DROP TABLE IF EXISTS #TempTable
 SELECT CustomerID, ProductName,
 ROW_NUMBER() OVER(PARTITION BY CustomerID ORDER BY OrderDate ASC) AS Row
@@ -116,3 +117,4 @@ INNER JOIN Menu AS m
 SELECT CustomerID, ProductName
 FROM #TempTable
 WHERE Row = 1
+```
