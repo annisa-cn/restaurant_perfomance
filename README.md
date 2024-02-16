@@ -6,6 +6,7 @@ First, we're going to create a database to store our tables. We're going to name
 ```CREATE DATABASE Restaurant```
 
 Select our database using this statement (or you can select it right from your available databases on DBMS).
+
 ```USE Restaurant```
 
 The database will consists of 3 tables: Sales, Menu, and Members.
